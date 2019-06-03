@@ -1,0 +1,40 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Work_test2"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="Work_test2.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <ComboBox x:Name="combosum" HorizontalAlignment="Left" Margin="4,115,0,0" VerticalAlignment="Top" Width="182">
+            <ComboBoxItem IsSelected="True">
+                <TextBlock><Run Text="&quot;Средняя за месяц&quot;"/></TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem IsSelected="False">
+                <TextBlock><Run Text="&quot;Максимальная за месяц&quot;"/></TextBlock>
+            </ComboBoxItem>
+        </ComboBox>
+        <DataGrid x:Name="mydatadrid" HorizontalAlignment="Left" Height="255" Margin="24,140,0,0" VerticalAlignment="Top" Width="550">
+            <DataGrid.Resources>
+                <local:SalaryToColorConverter x:Key="SalaryToColorConverter"/>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="Background" Value="{Binding Salary, Converter={StaticResource SalaryToColorConverter}}" />
+                </Style>
+            </DataGrid.RowStyle>
+        </DataGrid>
+        <TextBox x:Name="searchbox" HorizontalAlignment="Left" Height="24" Margin="194,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="Searchbox_TextChanged"/>
+        <Button Content="Обновить" HorizontalAlignment="Left" Margin="475,115,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click"/>
+        <CheckBox x:Name="checkb" Content="Показать уволенных" HorizontalAlignment="Left" Margin="328,120,0,0" VerticalAlignment="Top"/>
+        <Calendar x:Name="mycalend" HorizontalAlignment="Left" Margin="593,164,0,0" VerticalAlignment="Top" Height="171" Width="178" DisplayMode="Year" DisplayModeChanged="Calendar_DisplayModeChanged" DisplayDate="2011-04-01" SelectedDate="2011-04-01">
+            <Calendar.SelectedDates>
+                <System:DateTime>2011-04-01</System:DateTime>
+            </Calendar.SelectedDates>
+        </Calendar>
+        <TextBox x:Name="monthseltext" HorizontalAlignment="Left" Height="23" Margin="611,140,0,0" TextWrapping="Wrap" Text="Выбран" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>
